@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.file.system.mapper.RatingMapper">
+
+    <resultMap type="com.file.system.domain.Rating" id="RatingResult">
+        <result property="ratingId" column="rating_id"/>
+        <result property="avg" column="avg"/>
+        <result property="max" column="max"/>
+        <result property="min" column="min"/>
+        <result property="detail" column="detail"/>
+        <result property="total" column="total"/>
+        <result property="userId" column="user_id"/>
+        <result property="cousersId" column="cousers_id"/>
+        <result property="advice" column="advice"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+</mapper>
