@@ -19,6 +19,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime" column="update_time"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
+    <!--    <select id="getUserRoleInfo" resultType="com.file.system.domain.dto.UserRole"></select>-->
+    <resultMap id="userRoleResultMap" type="com.file.system.domain.dto.UserRole">
+        <result column="name" property="name"/>
+        <result column="role" property="role"/>
+        <result column="total" property="total"/>
+
+    </resultMap>
+
+    <select id="getUserRoleInfo" resultMap="userRoleResultMap" parameterType="String">
+        SELECT
+            sys_user.user_name AS name,
+            sys_role.role_name AS role,
+            rating.total AS total
+        FROM
+            rating
+                JOIN
+            sys_user_role ON rating.user_id = sys_user_role.user_id
+                JOIN
+            sys_user ON sys_user_role.user_id = sys_user.user_id
+                JOIN
+            sys_role ON sys_user_role.role_id = sys_role.role_id
+        WHERE
+            rating.cousers_id = #{cousersId};
+
+    </select>
 
 
 </mapper>

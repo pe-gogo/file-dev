@@ -1,6 +1,7 @@
 package com.file.system.service;
 
 import com.file.system.domain.Rating;
+import com.file.system.domain.dto.UserRole;
 import com.file.system.domain.vo.RatingVo;
 import com.file.system.domain.bo.RatingBo;
 import com.file.common.core.page.TableDataInfo;
@@ -46,4 +47,10 @@ public interface IRatingService {
      * 校验并批量删除评教信息
      */
     Boolean deleteWithValidByIds(Collection<String> ids, Boolean isValid);
+
+    //    查询当前课程评分
+    List<Rating> queryByCousersId(String cousersId);
+
+    //    查询当前课程评分分组
+    List<UserRole> queryByUserId(String userId);
 }

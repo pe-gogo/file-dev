@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import cn.dev33.satoken.annotation.SaIgnore;
 import cn.dev33.satoken.stp.SaTokenInfo;
+import com.file.system.domain.Rating;
+import com.file.system.domain.dto.UserRole;
 import lombok.RequiredArgsConstructor;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.*;
@@ -115,4 +118,18 @@ public class RatingController extends BaseController {
         System.out.println(saTokenInfo.getLoginId());
         return R.ok(iRatingService.queryById(ratingId));
     }
+
+    @GetMapping("/list/{id}")
+    public R<List<Rating>> getCouresaInfoById(@PathVariable String id){
+        //获取当前用户信息
+        return R.ok(iRatingService.queryByCousersId(id));
+    }
+
+    @GetMapping("/echart/{courseId}")
+    @SaIgnore
+    public R<List<UserRole>> getEchart(@PathVariable String courseId){
+        //获取当前用户信息
+        return R.ok(iRatingService.queryByUserId(courseId));
+    }
+
 }

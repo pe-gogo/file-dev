@@ -1,12 +1,14 @@
 package com.file.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.file.common.utils.StringUtils;
 import com.file.common.core.page.TableDataInfo;
 import com.file.common.core.domain.PageQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.file.system.domain.dto.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.file.system.domain.bo.RatingBo;
@@ -112,5 +114,17 @@ public class RatingServiceImpl implements IRatingService {
             //TODO 做一些业务上的校验,判断是否需要校验
         }
         return baseMapper.deleteBatchIds(ids) > 0;
+    }
+
+//    查询当前课程评分
+    @Override
+    public List<Rating> queryByCousersId(String cousersId) {
+        return baseMapper.selectList(new QueryWrapper<Rating>().eq("cousers_id", cousersId));
+    }
+
+//    查询当前课程评分分组
+    @Override
+    public List<UserRole> queryByUserId(String cousersId) {
+        return baseMapper.getUserRoleInfo(cousersId);
     }
 }
